@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: local # default (prod? ??? ??? ??? ??? ?? The following 2 profiles are active: "prod", "common" ?? ??.
+    group:
+      local: # local, common profile? ???? ?? ?????? ??
+        - common
+      prod:
+        - common
+---
+spring:
+  config:
+    activate:
+      on-profile: common
+
+# ...
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local # application-common.yml ? ??? ??
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
