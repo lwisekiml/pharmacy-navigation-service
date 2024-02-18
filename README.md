@@ -38,3 +38,16 @@
     > docker exec -it [CONTAINER ID] bash
     # 컨테이너를 sh, bash 등의 터미널 환경으로 접근
 
+<br/>
+
+### Ch04-06.도커를 이용한 다중 컨테이너 환경 구현하기
+    > docker-compose -f docker-compose-local.yml up  
+    
+    # 다른 창에서 아래 명령어를 실행하여 database와 redis 실행확인
+
+    > docker ps
+    CONTAINER ID   IMAGE                                      COMMAND                   CREATED          STATUS          PORTS                    NAMES
+    63a99c729e25   wisekim/pharmacy-recommendation-database   "docker-entrypoint.s…"   47 seconds ago   Up 39 seconds   0.0.0.0:3307->3306/tcp   pharmacy-recommendation-database
+    4516156d28f8   wisekim/pharmacy-recommendation-redis      "docker-entrypoint.s…"   47 seconds ago   Up 39 seconds   0.0.0.0:6379->6379/tcp   pharmacy-recommendation-redis
+
+
