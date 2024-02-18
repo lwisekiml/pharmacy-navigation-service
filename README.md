@@ -50,4 +50,21 @@
     63a99c729e25   wisekim/pharmacy-recommendation-database   "docker-entrypoint.s…"   47 seconds ago   Up 39 seconds   0.0.0.0:3307->3306/tcp   pharmacy-recommendation-database
     4516156d28f8   wisekim/pharmacy-recommendation-redis      "docker-entrypoint.s…"   47 seconds ago   Up 39 seconds   0.0.0.0:6379->6379/tcp   pharmacy-recommendation-redis
 
+    application.yml에 있는 아래 값은 Edit Configurations... 
+    -> Modify options -> Environment variables 선택
+    -> Environment variables 오른쪽 $ 클릭
+    -> '+'를 눌러 Name에 SPRING_DATASOURCE_USERNAME을 쓰고 Value에 값을 쓰면 된다.
+       SPRING_DATASOURCE_PASSWORD 도 똑같이 해주면 된다.
+
+    # ProjectApplication 실행하여 서버가 잘 뜨는지 확인
+
+.env 파일 : docker-compose가 참조하는 파일
+
+<br/>
+
+### Ch05-02 kakao 주소검색 api 구현하기
+
+    application.yml에 있는 KAKAO_REST_API_KEY는 Edit Configurations... 에 등록한다.
+
+
 
