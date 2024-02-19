@@ -50,4 +50,44 @@
     63a99c729e25   wisekim/pharmacy-recommendation-database   "docker-entrypoint.s…"   47 seconds ago   Up 39 seconds   0.0.0.0:3307->3306/tcp   pharmacy-recommendation-database
     4516156d28f8   wisekim/pharmacy-recommendation-redis      "docker-entrypoint.s…"   47 seconds ago   Up 39 seconds   0.0.0.0:6379->6379/tcp   pharmacy-recommendation-redis
 
+    application.yml에 있는 아래 값은 Edit Configurations... 
+    -> Modify options -> Environment variables 선택
+    -> Environment variables 오른쪽 $ 클릭
+    -> '+'를 눌러 Name에 SPRING_DATASOURCE_USERNAME을 쓰고 Value에 값을 쓰면 된다.
+       SPRING_DATASOURCE_PASSWORD 도 똑같이 해주면 된다.
+
+    # ProjectApplication 실행하여 서버가 잘 뜨는지 확인
+
+.env 파일 : docker-compose가 참조하는 파일
+
+<br/>
+
+### Ch05-02. kakao 주소검색 api 구현하기
+
+    application.yml에 있는 KAKAO_REST_API_KEY는 Edit Configurations... 에 등록한다.
+
+<br/>
+
+### Ch05-04. Testcontainers 소개
+- TestContainers는 Java 언어만으로 docker container를 활용한 테스트 환경 구성  
+- 도커를 이용하여 테스트할 때 컨테이너를 직접 관리해야 하는 번거로움을 해결 해주며, 운영환경과 유사한 스펙으로 테스트 가능
+- 즉, 테스트 코드가 실행 될 때 자동으로 도커 컨테이너를 실행하여 테스트 하고, 테스트가 끝나면 자동으로 컨테이너를 종료 및 정리
+
+<br/>
+
+### Ch05-05. Testcontainers를 이용한 통합 테스트 환경 구성
+
+    test/resources/application.yml에 있는 KAKAO_REST_API_KEY값은 application.yml에 있는 KAKAO_REST_API_KEY는 Edit Configurations... 에 등록한다.
+
+<br/>
+
+###
+테스트 실행 후 docker ps 명령어로 확인을 해보면 아래와 같이 나와다가 사라진다.
+
+CONTAINER ID   IMAGE                       COMMAND                   CREATED         STATUS         PORTS                    NAMES                                                   
+9521566ce5b5   mariadb:10                  "docker-entrypoint.s…"   4 seconds ago   Up 4 seconds   0.0.0.0:2544->3306/tcp   sweet_archimedes                                         
+bb5130c66326   redis:6                     "docker-entrypoint.s…"   6 seconds ago   Up 5 seconds   0.0.0.0:2542->6379/tcp   modest_mirzakhani                                        
+458d19266813   testcontainers/ryuk:0.3.3   "/app"                    7 seconds ago   Up 6 seconds   0.0.0.0:2540->8080/tcp   testcontainers-ryuk-32e2ccd1-db82-417b-8e1e-4b42d930c8bb
+
+testcontainers/ryuk:0.3.3 : 테스트가 끝난 후 정리를 해주는 역할을 하는 컨테이너
 
