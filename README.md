@@ -90,4 +90,67 @@
 
 - testcontainers/ryuk:0.3.3 : 테스트가 끝난 후 정리를 해주는 역할을 하는 컨테이너
 
-### Ch05-08.JPA Dirty Checking
+<br/>
+
+### Ch05-11.약국 데이터 셋업
+
+    > docker-compose -f docker-compose-local.yml up
+
+    # 다른 창에서 아래 실행
+    > docker ps
+    CONTAINER ID   IMAGE                                      COMMAND                   CREATED         STATUS         PORTS                    NAMES
+    1a97ad2840e3   wisekim/pharmacy-recommendation-database   "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes   0.0.0.0:3307->3306/tcp   pharmacy-recommendation-database
+    4516156d28f8   wisekim/pharmacy-recommendation-redis      "docker-entrypoint.s…"   30 hours ago    Up 2 minutes   0.0.0.0:6379->6379/tcp   pharmacy-recommendation-redis   
+
+    > docker exec -it 1a97ad2840e3 bash
+    > mysql -uroot -p
+    # 패스워드 입력
+    MariaDB [(none)]>  show databases;
+    +-------------------------+
+    | Database                |
+    +-------------------------+
+    | information_schema      |
+    | mysql                   |
+    | performance_schema      |
+    | pharmacy-recommendation |
+    | sys                     |
+    +-------------------------+
+    5 rows in set (0.000 sec)
+    
+    MariaDB [(none)]> use pharmacy-recommendation
+    Reading table information for completion of table and column names
+    You can turn off this feature to get a quicker startup with -A
+    
+    Database changed
+    MariaDB [pharmacy-recommendation]> show tables;
+    +-----------------------------------+
+    | Tables_in_pharmacy-recommendation |
+    +-----------------------------------+
+    | direction                         |
+    | pharmacy                          |
+    +-----------------------------------+
+    2 rows in set (0.000 sec)
+
+    MariaDB [pharmacy-recommendation]> select * from pharmacy;
+
+<br/>
+
+* 여기서 show tables; 를 하였는데 테이블이 안 나오는 경우
+1. 아래 처럼 build 옵션을 추가하게 되면, 기존에 사용했던 이미지를 재사용하여 도커 컨테이너를 띄우지 않고,
+무조건 재빌드 하여 컨테이너를 실행합니다.
+> $ docker-compose -f docker-compose-local.yml up --build  
+
+또한, 아래 명령어는 현재 사용하지 않는 리소스를 정리하는데 유용한 명령어 이니 참고하면 좋을 것 같습니다.
+- 멈춰있는 컨테이너 제거
+- 컨테이너에서 사용되지 않는 네트워크 제거
+- 불필요한 이미지 및 빌드 캐시 제거
+> $ docker system prune
+
+<br/>
+
+2. docker 컨테이너 삭제 후 다시 실행
+> docker rm [컨테이너id]  
+> 로 삭제 가능하다. 또는 docker desktop 에서 삭제 해도 된다. 그 후에  
+> docker-compose -f docker-compose-local.yml up  
+> 명령어 부터 다시 실행
+
