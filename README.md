@@ -79,3 +79,15 @@
 
     test/resources/application.yml에 있는 KAKAO_REST_API_KEY값은 application.yml에 있는 KAKAO_REST_API_KEY는 Edit Configurations... 에 등록한다.
 
+<br/>
+
+###
+테스트 실행 후 docker ps 명령어로 확인을 해보면 아래와 같이 나와다가 사라진다.
+
+CONTAINER ID   IMAGE                       COMMAND                   CREATED         STATUS         PORTS                    NAMES                                                   
+9521566ce5b5   mariadb:10                  "docker-entrypoint.s…"   4 seconds ago   Up 4 seconds   0.0.0.0:2544->3306/tcp   sweet_archimedes                                         
+bb5130c66326   redis:6                     "docker-entrypoint.s…"   6 seconds ago   Up 5 seconds   0.0.0.0:2542->6379/tcp   modest_mirzakhani                                        
+458d19266813   testcontainers/ryuk:0.3.3   "/app"                    7 seconds ago   Up 6 seconds   0.0.0.0:2540->8080/tcp   testcontainers-ryuk-32e2ccd1-db82-417b-8e1e-4b42d930c8bb
+
+testcontainers/ryuk:0.3.3 : 테스트가 끝난 후 정리를 해주는 역할을 하는 컨테이너
+
