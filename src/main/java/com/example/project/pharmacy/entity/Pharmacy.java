@@ -1,5 +1,6 @@
 package com.example.project.pharmacy.entity;
 
+import com.example.project.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,7 +19,7 @@ import javax.persistence.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Pharmacy {
+public class Pharmacy extends BaseTimeEntity {
 
     @Id // 맵핑될 PK값
     @GeneratedValue(strategy = GenerationType.IDENTITY) // PK 값 생성을 DB에 위임(id값을 비워서 DB에 값을 저장하면 DB에서 알아서 PK값 생성하여 맵핑함)
