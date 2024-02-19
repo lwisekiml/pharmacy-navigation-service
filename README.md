@@ -66,7 +66,16 @@
 
     application.yml에 있는 KAKAO_REST_API_KEY는 Edit Configurations... 에 등록한다.
 
+<br/>
+
 ### Ch05-04. Testcontainers 소개
 - TestContainers는 Java 언어만으로 docker container를 활용한 테스트 환경 구성  
 - 도커를 이용하여 테스트할 때 컨테이너를 직접 관리해야 하는 번거로움을 해결 해주며, 운영환경과 유사한 스펙으로 테스트 가능
 - 즉, 테스트 코드가 실행 될 때 자동으로 도커 컨테이너를 실행하여 테스트 하고, 테스트가 끝나면 자동으로 컨테이너를 종료 및 정리
+
+<br/>
+
+### Ch05-05. Testcontainers를 이용한 통합 테스트 환경 구성
+
+    test/resources/application.yml에 있는 KAKAO_REST_API_KEY값은 application.yml에 있는 KAKAO_REST_API_KEY는 Edit Configurations... 에 등록한다.
+
