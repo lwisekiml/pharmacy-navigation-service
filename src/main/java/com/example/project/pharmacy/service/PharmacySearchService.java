@@ -27,7 +27,7 @@ public class PharmacySearchService {
                 .collect(Collectors.toList());
     }
 
-    public PharmacyDto convertToPharmacyDto(Pharmacy pharmacy) {
+    private PharmacyDto convertToPharmacyDto(Pharmacy pharmacy) {
         return PharmacyDto.builder()
                 .id(pharmacy.getId())
                 .pharmacyName(pharmacy.getPharmacyName())
