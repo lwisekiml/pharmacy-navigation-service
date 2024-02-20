@@ -26,6 +26,8 @@ public class DocumentDto {
      * address	    Address	    지번 주소 상세 정보
      * road_address	RoadAddress	도로명 주소 상세 정보
      */
+    @JsonProperty("place_name")
+    private String placeName;
 
     @JsonProperty("address_name") // JSON에 있는 address_name 값을 addressName에 넣는다.
     private String addressName;
@@ -35,4 +37,7 @@ public class DocumentDto {
 
     @JsonProperty("x")
     private double longitude;
+
+    @JsonProperty("distance")
+    private double distance;
 }
