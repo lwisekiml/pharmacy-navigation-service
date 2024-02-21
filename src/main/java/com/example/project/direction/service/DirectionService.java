@@ -28,11 +28,17 @@ public class DirectionService {
     private final PharmacySearchService pharmacySearchService; // 의존성 주입
     private final DirectionRepository directionRepository;
     private final KakaoCategorySearchService kakaoCategorySearchService;
+    private final Base62Service base62Service;
 
     @Transactional // 데이터 변경이 있기 때문에 @Transactional 로 함
     public List<Direction> saveAll(List<Direction> directionList) { // entity인 Direction을 컨트롤단에서 사용을 하고 뷰에 전달하는 욛도로 사용한다면 DB컬럼이 변경 되거나 했을 때 큰 이슈가 발생 할 수 있기 때문에 DTO로 컨버팅해서 컨트롤러 단으로 넘긴다.
         if (CollectionUtils.isEmpty(directionList)) return Collections.emptyList();
         return directionRepository.saveAll(directionList);
+    }
+
+    public Direction findById(String encodedId) {
+        Long decodedId = base62Service.decodeDirectionId(encodedId);
+        return directionRepository.findById(decodedId).orElse(null);
     }
 
     public List<Direction> buildDirectionList(DocumentDto documentDto) { // documentDto는 고객이 입력한 주소정보
