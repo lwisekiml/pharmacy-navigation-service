@@ -35,11 +35,13 @@ public class PharmacyRecommendationService {
 
         DocumentDto documentDto = kakaoApiResponseDto.getDocumentList().get(0);
 
-//        List<Direction> directionList = directionService.buildDirectionList(documentDto);
-        List<Direction> directionList1 = directionService.buildDirectionListByCategoryApi(documentDto);
+        // 공공기관 약국 데이터 및 거리계산 알고리즘 이용
+        List<Direction> directionList = directionService.buildDirectionList(documentDto);
 
-//        directionService.saveAll(directionList);
-        return directionService.saveAll(directionList1)
+        // kakao 카테고리를 이용한 장소 검색 api 이용
+        //List<Direction> directionList = directionService.buildDirectionListByCategoryApi(documentDto);
+
+        return directionService.saveAll(directionList)
                 .stream()
                 .map(this::convertToOutputDto) // t -> convertToOutputDto(t)
                 .collect(Collectors.toList());
@@ -47,7 +49,7 @@ public class PharmacyRecommendationService {
 
     private OutputDto convertToOutputDto(Direction direction) {
         return OutputDto.builder()
-                .pharmacyName((direction.getTargetPharmacyName()))
+                .pharmacyName(direction.getTargetPharmacyName())
                 .pharmacyAddress(direction.getTargetAddress())
                 .directionUrl("todo")// 길 안내 url
                 .roadViewUrl("todo")// 로드뷰 url
