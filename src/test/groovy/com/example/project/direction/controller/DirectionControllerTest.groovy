@@ -31,8 +31,9 @@ class DirectionControllerTest extends Specification {
         def result = mockMvc.perform(MockMvcRequestBuilders.get("/dir/{encodedId}", encodedId))
 
         then:
-        result.andExpect(status().is3xxRedirection())
-            .andExpect(redirectedUrl(redirectURL))
+        result.andExpect(status().is3xxRedirection()) // 리다이렉트 발생 확인
+            .andExpect(redirectedUrl(redirectURL))    // 리다이렉트 경로 검증
             .andDo(print())
     }
+
 }
