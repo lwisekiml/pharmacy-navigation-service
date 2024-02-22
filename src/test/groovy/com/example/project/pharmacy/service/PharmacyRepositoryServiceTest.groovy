@@ -74,7 +74,7 @@ class PharmacyRepositoryServiceTest extends AbstractIntegrationContainerBaseTest
                 .build()
 
         when:
-        pharmacyRepositoryService.bar(Arrays.asList(pharmacy)) // bar()에 @Transactional이 있으면 롤백이 되어 이 테스트는 실패한다.(실패하는 것이 제대로 의도한대로 되었다는 것)
+        pharmacyRepositoryService.bar(Arrays.asList(pharmacy)) // bar()에 @Transactional이 있으면 롤백이 되어 이 테스트는 실패한다.
 
         then:
         def e = thrown(RuntimeException.class)

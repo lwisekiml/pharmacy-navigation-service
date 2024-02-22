@@ -1,6 +1,8 @@
 package com.example.project.direction.service
 
 import com.example.project.api.dto.DocumentDto
+import com.example.project.api.service.KakaoCategorySearchService
+import com.example.project.direction.repository.DirectionRepository
 import com.example.project.pharmacy.dto.PharmacyDto
 import com.example.project.pharmacy.service.PharmacySearchService
 import spock.lang.Specification
@@ -8,8 +10,12 @@ import spock.lang.Specification
 class DirectionServiceTest extends Specification {
 
     private PharmacySearchService pharmacySearchService = Mock()
+    private DirectionRepository directionRepository = Mock()
+    private KakaoCategorySearchService kakaoCategorySearchService = Mock()
+    private Base62Service base62Service = Mock()
     // PharmacySearchService는 의존성 주입을 받아서 진행하고 있다. 그래서 단위 테스트를 하기 위해 PharmacySearchService를 모킹해주어야 한다.
-    private DirectionService directionService = new DirectionService(pharmacySearchService)
+    private DirectionService directionService = new DirectionService(
+            pharmacySearchService, directionRepository, kakaoCategorySearchService, base62Service)
 
     private List<PharmacyDto> pharmacyList
 

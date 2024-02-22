@@ -10,7 +10,6 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -20,7 +19,7 @@ public class PharmacyRepositoryService {
     private final PharmacyRepository pharmacyRepository;
 
     // self invocation test
-    @Transactional
+//    @Transactional
     public void bar(List<Pharmacy> pharmacyList) {
         log.info("bar CurrentTransactionName: " + TransactionSynchronizationManager.getCurrentTransactionName());
         foo(pharmacyList);

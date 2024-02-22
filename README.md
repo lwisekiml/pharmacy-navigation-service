@@ -154,3 +154,12 @@
 > docker-compose -f docker-compose-local.yml up  
 > 명령어 부터 다시 실행
 
+<br/>
+
+### Ch07-03.테스트 코드 작성
+
+>./gradlew build -P KAKAO_REST_API_KEY={카카오 api 키값}  
+
+
+<br/>
+
