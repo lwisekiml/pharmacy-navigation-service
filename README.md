@@ -202,4 +202,40 @@
     2.3685
     127.05690354108810425
     37.61040421148816648
+
+### Ch08-04.Redis 테스트 코드 작성
+
+    # cmd 창
+    > docker-compose -f docker-compose-local.yml up
+
+    # 인텔리제이에서 스프링 시작
+
+    # chrome 에서
+    > http://localhost:8080/redis/save 접속 후 로그를 보면 아래와 같은 로그 확인이 가능하다.
+
+    [PharmacyRedisTemplateService save success] id: 1
+    [PharmacyRedisTemplateService save success] id: 2
+    [PharmacyRedisTemplateService save success] id: 3
+    ...
+
+    # cmd 창
+    > docker ps
+    > docker exec -it {redis CONTAINER ID} redis-cli --raw  
+    > hgetall PHARMACY
+    130
+    {"id":130,"pharmacyName":"백화점약국","pharmacyAddress":"서울특별시 성북구  돌곶이로  61 (석관동)","latitude":37.60916369,"longitude":127.0585119}
+    139
+    {"id":139,"pharmacyName":"삼원약국","pharmacyAddress":"서울특별시 성북구 종암로 120 (종암동","latitude":37.60102101,"longitude":127.0344393}
+    ...
     
+    # 130 은 서브키 값(id값/db sequence 값)
+    # {...}은 JSON
+
+    # http://localhost:8080/ 접속하여 검색후 로그 창을 보면
+    : redis findAll success!
+    가 찍혀 있는것을 확인할 수 있다.
+
+<참고>
+> docker-compose -f docker-compose-local.yml down  
+> 전체 컨테이너 제거하고 리소스 정리
+
